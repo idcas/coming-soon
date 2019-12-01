@@ -961,3 +961,12 @@ a.gallery-view:hover {
 .help-block{
   display: none;
 }
+.modalStyle{
+  background: #00e676;
+  color: white;
+  font-size: 20px;
+}
+.text-w{
+  color: white !important;
+  opacity: 0.5 !important;
+}

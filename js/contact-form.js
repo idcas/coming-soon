@@ -62,7 +62,7 @@ btnForm.addEventListener('click', () => {
           <b>Nombre</b>:  ${formData.name} <br>
           <b>Correo Electrónico</b>:  ${formData.email} <br>
           <b>Teléfono</b>: ${formData.phone} <br>
-          <b>Mensaje</b>: ${formData.messae} <br>
+          <b>Mensaje</b>: ${formData.message} <br>
           `
       }).then(
         message => {

@@ -68,8 +68,8 @@ jQuery(document).on('ready', function ($) {
     const form = document.querySelector('#mc-form');
     const label = form.querySelector('label');
     const input = form.querySelector('input');
-    const modal = document.querySelector('.modal');
-    const close = document.querySelector('.close');
+    const modal = document.querySelector('#modal1');
+    const close = document.querySelector('#close1');
 
     const isEmailValid = function(email) {
       let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -90,7 +90,7 @@ jQuery(document).on('ready', function ($) {
             SecureToken: '7059cc5a-eddf-4a3d-96f8-aca0bc03ab13',
             To : "cpineda@idcas.edu.do",
             From : "cpineda@idcas.edu.do",
-            Subject : "Listado de Emails",
+            Subject : "Listado de correos de Estudiantes",
             Body : "Hola Como estás? me gustaría que me notificame cuando la página este lista <br> <strong>mi correo electrónico es</strong>: "
                 + input.value
         }).then(

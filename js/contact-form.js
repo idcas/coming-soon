@@ -1,8 +1,8 @@
 
 const form = document.querySelector('#contact-form');
 const btnForm = document.querySelector('#btn-form');
-const modal = document.querySelector('.modal');
-const close = document.querySelector('.close');
+const modal = document.querySelector('#modal2');
+const close = document.querySelector('#close2');
 
 const isEmailValid = function(email) {
   let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -51,13 +51,11 @@ btnForm.addEventListener('click', () => {
           document.querySelector('#message-field').querySelector('.help-block').style.display = 'block';
           return;
       }
-      alert('Oks');
-
       Email.send({
           SecureToken: '7059cc5a-eddf-4a3d-96f8-aca0bc03ab13',
           To : "cpineda@idcas.edu.do",
           From : "cpineda@idcas.edu.do",
-          Subject : "Listado de Emails",
+          Subject : "Consulta de Estudiantes",
           Body : `
           <b>Nombre</b>:  ${formData.name} <br>
           <b>Correo Electrónico</b>:  ${formData.email} <br>

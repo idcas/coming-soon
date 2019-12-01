@@ -68,6 +68,8 @@ jQuery(document).on('ready', function ($) {
     const form = document.querySelector('#mc-form');
     const label = form.querySelector('label');
     const input = form.querySelector('input');
+    const modal = document.querySelector('.modal');
+    const close = document.querySelector('.close');
 
     const isEmailValid = function(email) {
       let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -95,11 +97,19 @@ jQuery(document).on('ready', function ($) {
             Body : "Hola Como estás? me gustaría que me notificame cuando la página este lista <br> <strong>mi correo electrónico es</strong>: "
                 + input.value
         }).then(
-          message => alert(message)
+          message => {
+            input.value = '';
+            modal.style.display = 'block';
+          }
         );
-        input.value = '';
-        label.textContent = 'Muchas gracias por enviarnos tu correo electrónico';
 
+        window.addEventListener('click', () => {
+          modal.style.display = 'none';
+        });
+
+        close.addEventListener('click', () => {
+          modal.style.display = 'none';
+        });
 
     });
 

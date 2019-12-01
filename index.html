@@ -175,15 +175,18 @@
                         <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                             <h4>Escribe tu mensaje aquí</h4>
                             <div class="contact-form">
-                                <form action="" id="contact-form" method="post">
+                                <form  id="contact-form">
                                     <div class="form-group" id="name-field">
+                                        <span class="help-block">El campo nombre es obligatorio</span>
                                         <div class="form-input">
-                                            <input type="text" class="form-control" id="form-name" name="form-name" placeholder="Nombre.." required>
+                                            <input type="text" class="form-control" id="form-name" name="form-name" placeholder="Nombre.." >
                                         </div>
                                     </div>
                                     <div class="form-group" id="email-field">
+                                      <span class="help-block">El campo correo electrónico es obligatorio</span>
+                                      <span class="help-block" id="emailInvalid">El correo electrónico es invalido</span>
                                         <div class="form-input">
-                                            <input type="email" class="form-control" id="form-email" name="form-email" placeholder="Correo Electrónico.." required>
+                                            <input type="email" class="form-control" id="form-email" name="form-email" placeholder="Correo Electrónico.." >
                                         </div>
                                     </div>
                                     <div class="form-group" id="phone-field">
@@ -192,12 +195,13 @@
                                         </div>
                                     </div>
                                     <div class="form-group" id="message-field">
+                                        <span class="help-block">El campo mensaje es obligatorio</span>
                                         <div class="form-input">
-                                            <textarea class="form-control" rows="6" id="form-message" name="form-message" placeholder="Tu Mensaje Aquí..." required></textarea>
+                                            <textarea class="form-control" rows="6" id="form-message" name="form-message" placeholder="Tu Mensaje Aquí..." ></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit">Enviar Mensaje <i class="fa fa-paper-plane-o"></i></button>
+                                        <button type="button" id="btn-form">Enviar Mensaje <i class="fa fa-paper-plane-o"></i></button>
                                     </div>
                                 </form>
                             </div>

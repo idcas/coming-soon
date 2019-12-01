@@ -1,72 +1,80 @@
-/*
---------------------------------
-Ajax Contact Form
---------------------------------
-+ https://github.com/mehedidb/Ajax_Contact_Form
-+ A Simple Ajax Contact Form developed in PHP with HTML5 Form validation.
-+ Has a fallback in jQuery for browsers that do not support HTML5 form validation.
-+ version 1.0.1
-+ Copyright 2016 Mehedi Hasan Nahid
-+ Licensed under the MIT license
-+ https://github.com/mehedidb/Ajax_Contact_Form
-*/
 
-(function ($, window, document, undefined) {
-    'use strict';
+const form = document.querySelector('#contact-form');
+const btnForm = document.querySelector('#btn-form');
+const modal = document.querySelector('.modal');
+const close = document.querySelector('.close');
 
-    var $form = $('#contact-form');
+const isEmailValid = function(email) {
+  let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
+}
 
-    $form.submit(function (e) {
-        // remove the error class
-        $('.form-group').removeClass('has-error');
-        $('.help-block').remove();
+btnForm.addEventListener('click', () => {
+      // remove the error class
+      const formGroup = document.querySelectorAll('.form-group');
+      const errors = document.querySelectorAll('.help-block');
+      document.querySelector('#emailInvalid').style.display = 'none';
 
-        // get the form data
-        var formData = {
-            'name' : $('input[name="form-name"]').val(),
-            'email' : $('input[name="form-email"]').val(),
-            'phone' : $('input[name="form-phone"]').val(),
-            'message' : $('textarea[name="form-message"]').val()
-        };
+      errors.forEach(e => {
+        e.style.display = 'none';
+      });
+      formGroup.forEach(e => {
+        e.classList.remove('has-error');
+      });
 
-        // process the form
-        $.ajax({
-            type : 'POST',
-            url  : 'process.php',
-            data : formData,
-            dataType : 'json',
-            encode : true
-        }).done(function (data) {
-            // handle errors
-            if (!data.success) {
-                if (data.errors.name) {
-                    $('#name-field').addClass('has-error');
-                    $('#name-field').find('.form-input').append('<span class="help-block">' + data.errors.name + '</span>');
-                }
+      // get the form data
+      var formData = {
+          'name' : document.querySelector('input[name="form-name"]').value,
+          'email' : document.querySelector('input[name="form-email"]').value,
+          'phone' : document.querySelector('input[name="form-phone"]').value,
+          'message' : document.querySelector('textarea[name="form-message"]').value
+      };
 
-                if (data.errors.email) {
-                    $('#email-field').addClass('has-error');
-                    $('#email-field').find('.form-input').append('<span class="help-block">' + data.errors.email + '</span>');
-                }
 
-                if (data.errors.phone) {
-                    $('#phone-field').addClass('has-error');
-                    $('#phone-field').find('.form-input').append('<span class="help-block">' + data.errors.phone + '</span>');
-                }
+      if(formData.name.trim() === '') {
+          document.querySelector('#name-field').classList.add('has-error');
+          document.querySelector('#name-field').querySelector('.help-block').style.display = 'block';
+          return;
+      }
+      if(formData.email.trim()  === '') {
+          document.querySelector('#email-field').classList.add('has-error');
+          document.querySelector('#email-field').querySelector('.help-block').style.display = 'block';
+          return;
+      }
+      if(! isEmailValid(formData.email)) {
+          document.querySelector('#email-field').classList.add('has-error');
+          document.querySelector('#email-field').querySelector('#emailInvalid').style.display = 'block';
+          return;
+      }
+      if(formData.message.trim()  === '') {
+          document.querySelector('#message-field').classList.add('has-error');
+          document.querySelector('#message-field').querySelector('.help-block').style.display = 'block';
+          return;
+      }
+      alert('Oks');
 
-                if (data.errors.message) {
-                    $('#message-field').addClass('has-error');
-                    $('#message-field').find('.form-input').append('<span class="help-block">' + data.errors.message + '</span>');
-                }
-            } else {
-                // display success message
-                $form.html('<div class="alert alert-success">' + data.message + '</div>');
-            }
-        }).fail(function (data) {
-            // for debug
-            console.log(data)
-        });
+      Email.send({
+          SecureToken: '7059cc5a-eddf-4a3d-96f8-aca0bc03ab13',
+          To : "cpineda@idcas.edu.do",
+          From : "cpineda@idcas.edu.do",
+          Subject : "Listado de Emails",
+          Body : `
+          <b>Nombre</b>:  ${formData.name} <br>
+          <b>Correo Electrónico</b>:  ${formData.email} <br>
+          <b>Teléfono</b>: ${formData.phone} <br>
+          <b>Mensaje</b>: ${formData.messae} <br>
+          `
+      }).then(
+        message => {
+          modal.style.display = 'block';
+        }
+      );
 
-        e.preventDefault();
-    });
-}(jQuery, window, document));
+      window.addEventListener('click', () => {
+        modal.style.display = 'none';
+      });
+
+      close.addEventListener('click', () => {
+        modal.style.display = 'none';
+      });
+});

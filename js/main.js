@@ -87,9 +87,6 @@ jQuery(document).on('ready', function ($) {
         }
 
         Email.send({
-            /*Host : "smtp.idcas.edu.do",
-            Username : "cpineda@idcas.edu.do",
-            Password : "C@v(uVa8",*/
             SecureToken: '7059cc5a-eddf-4a3d-96f8-aca0bc03ab13',
             To : "cpineda@idcas.edu.do",
             From : "cpineda@idcas.edu.do",
